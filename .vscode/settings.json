@@ -4,13 +4,24 @@
     ".prettierrc": "jsonc",
     ".eslintignore": "ignore"
   },
-  
+
   "eslint.validate": [
     "javascript",
     "javascriptreact",
     "html",
     "typescriptreact"
   ],
+
+  "material-icon-theme.folders.associations": {
+    "implementations" : "packages",
+    "inputs": "import",
+    "dtos": "typescript",
+    "store": "database",
+    "repositories": "database",
+    "main": "app",
+    "renderer": "review",
+    "req": "resource",
+  },
 
   "javascript.validate.enable": false,
   "javascript.format.enable": false,
