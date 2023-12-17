@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('../../assets/fonts/Roboto/Roboto-Regular.ttf');
+}
+
+@layer base {
+  body {
+    @apply font-body overflow-hidden;
+  }
+
+  a,
+  button {
+    @apply cursor-pointer;
+  }
+
+  span {
+    @apply block;
+  }
+
+  input,
+  textarea,
+  select,
+  button,
+  span,
+  a {
+    @apply font-body;
+  }
+}
