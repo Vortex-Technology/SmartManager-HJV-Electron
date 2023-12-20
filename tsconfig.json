@@ -17,9 +17,6 @@
       "@components/*": [
         "./src/renderer/components/*"
       ],
-      "@contexts/*": [
-        "./src/renderer/contexts/*"
-      ],
       "@hooks/*": [
         "./src/renderer/hooks/*"
       ],

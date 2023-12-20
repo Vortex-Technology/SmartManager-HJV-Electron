@@ -1,7 +1,9 @@
-import { useNavigate } from 'react-router-dom';
+import { useProducts } from '@hooks/useProducts';
+import { useRoutes } from '@hooks/useRoutes';
 
 export function HomePage() {
-  const navigate = useNavigate();
+  const { navigate } = useRoutes();
+  const { products } = useProducts();
 
   return (
     <h1 className="">
