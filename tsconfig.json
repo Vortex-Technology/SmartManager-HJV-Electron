@@ -17,6 +17,9 @@
       "@components/*": [
         "./src/renderer/components/*"
       ],
+      "@entities/*": [
+        "./src/entities/*"
+      ],
       "@hooks/*": [
         "./src/renderer/hooks/*"
       ],
