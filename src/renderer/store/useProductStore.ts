@@ -15,6 +15,7 @@ const useProductStore = create<UseProductStore>((set, get) => {
     getProducts: async () => {
       // chamada api
 
+      const { isLoading } = get();
       set({
         isLoading: false,
       });
