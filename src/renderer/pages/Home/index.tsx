@@ -9,7 +9,7 @@ export function HomePage() {
     <h1 className="">
       hello world!
       <br />
-      <button type="button" onClick={() => navigate(`/ola/${12}`)}>
+      <button type="button" onClick={() => navigate(`/administrator/login`)}>
         OLA!
       </button>
     </h1>
