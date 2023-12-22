@@ -9,7 +9,7 @@ const rootStyles = tv({
 interface InputRootProps
   extends HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof rootStyles> {
-  asChild: boolean;
+  asChild?: boolean;
 }
 
 export function Root({ asChild = false, className, ...props }: InputRootProps) {

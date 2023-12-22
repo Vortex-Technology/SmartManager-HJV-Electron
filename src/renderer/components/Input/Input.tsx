@@ -19,7 +19,7 @@ const inputStyles = tv({
 
   defaultVariants: {
     size: 'md',
-    theme: 'dark',
+    theme: 'light',
   },
 });
 
