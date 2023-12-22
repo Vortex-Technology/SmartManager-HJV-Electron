@@ -1,13 +1,10 @@
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-
-const createSessionFormSchema = z.object({
-  login: z.string().min(4, ' minimo  caracter'),
-  password: z.string().min(8, ' minimo caracter'),
-});
-
-type CreateSessionFormData = z.infer<typeof createSessionFormSchema>;
+import { Input } from '@components/Input';
+import {
+  createSessionFormSchema,
+  CreateSessionFormData,
+} from '@schemas/createSessionFormSchema';
 
 export function CreateSessionForm() {
   const {
@@ -24,10 +21,26 @@ export function CreateSessionForm() {
 
   return (
     <form onSubmit={handleSubmit(handleCreateSession)}>
-      {errors.login?.message}
-      {errors.password?.message}
-      <input type="text" {...register('login')} />
-      <input type="password" {...register('password')} />
+      <Input.Root>
+        <Input.Header>
+          <Input.Label>Login</Input.Label>
+          <Input.Error>{errors.login?.message}</Input.Error>
+        </Input.Header>
+        <Input.Input>
+          <Input.TextInput {...register('login')} />
+        </Input.Input>
+      </Input.Root>
+
+      <Input.Root>
+        <Input.Header>
+          <Input.Label>password</Input.Label>
+          <Input.Error>{errors.password?.message}</Input.Error>
+        </Input.Header>
+        <Input.Input>
+          <Input.TextInput {...register('password')} />
+        </Input.Input>
+      </Input.Root>
+
       <button type="submit" disabled={!isDirty ?? isSubmitting}>
         Logar
       </button>
