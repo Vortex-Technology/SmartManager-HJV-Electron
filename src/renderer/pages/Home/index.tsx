@@ -18,6 +18,18 @@ export function HomePage() {
       <button type="button" onClick={() => navigate(`/viewer/login`)}>
         Viewer
       </button>
+      <br />
+      <br />
+      <br />
+      <button type="button" onClick={() => navigate(`/register/administrator`)}>
+        Cadastrar Administrator
+      </button>
+      <br />
+      <br />
+      <br />
+      <button type="button" onClick={() => navigate(`/register/employee`)}>
+        Cadastrar Employee
+      </button>
     </div>
   );
 }
