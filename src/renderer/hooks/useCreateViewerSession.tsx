@@ -1,11 +1,11 @@
 import { useViewerStore } from '@store/useViewerStore';
-import { CreateSessionData } from '@@types/CreateSessionData';
+import { CreateSessionFormData } from '@schemas/createSessionFormSchema';
 
 export function useCreateViewerSession() {
   const { login, isAuthenticated } = useViewerStore();
 
-  const handleLogin = async (createSessionData: CreateSessionData) => {
-    await login(createSessionData);
+  const handleLogin = async (createSessionFormData: CreateSessionFormData) => {
+    await login(createSessionFormData);
   };
 
   return { handleLogin, isAuthenticated };

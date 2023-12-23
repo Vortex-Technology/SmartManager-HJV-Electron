@@ -1,11 +1,11 @@
-import { CreateSessionData } from '@@types/CreateSessionData';
+import { CreateSessionFormData } from '@schemas/createSessionFormSchema';
 import { useAdministratorStore } from '@store/useAdminitratorStore';
 
 export function useCreateAdministratorSession() {
   const { login, isAuthenticated } = useAdministratorStore();
 
-  const handleLogin = async (createSessionData: CreateSessionData) => {
-    await login(createSessionData);
+  const handleLogin = async (createSessionFormData: CreateSessionFormData) => {
+    await login(createSessionFormData);
   };
 
   return { handleLogin, isAuthenticated };
