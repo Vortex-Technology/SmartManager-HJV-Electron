@@ -1,11 +1,12 @@
 import { useRoutes } from '@hooks/useRoutes';
-import { CreateSessionForm } from './components/CreateSessionForm';
+import { CreateRegisterForm } from './components/CreateRegisterForm';
 
-export function CreateAdminSessionPage() {
+export function CreateAdministratorRegisterPage() {
   const { navigate } = useRoutes();
+
   return (
     <div>
-      <CreateSessionForm />
+      <CreateRegisterForm />
       <br />
       <br />
       <br />
