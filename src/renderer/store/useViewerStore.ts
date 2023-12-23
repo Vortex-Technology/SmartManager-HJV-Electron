@@ -1,31 +1,30 @@
-import { CreateSessionData } from '@@types/CreateSessionData';
+import { CreateRegisterFormData } from '@schemas/createRegisterFormSchema';
 import { Viewer } from '@entities/Viewer';
 import { create } from 'zustand';
-
+import { CreateSessionFormData } from '@schemas/createSessionFormSchema';
 
 interface UseViewerStore {
   isAuthenticated: boolean;
   isLoading: boolean;
   viewer: Viewer[];
 
-  login: (createSessionData: CreateSessionData) => Promise<void>;
+  login: (createSessionFormData: CreateSessionFormData) => Promise<void>;
+  register: (createRegisterFormData: CreateRegisterFormData) => Promise<void>;
 }
 
-const useViewerStore = create<UseViewerStore>((set, get) =>{
+const useViewerStore = create<UseViewerStore>((set, get) => {
   return {
     isAuthenticated: true,
     isLoading: true,
     viewer: [],
-    login: async (createSessionData) => {
-      // API
 
-      if () {
-        set({
-          isAuthenticated: false,
-        });
-      }
+    login() {
+      set();
+    },
+    register() {
+      get();
     },
   };
-})
+});
 
-export { useViewerStore}
+export { useViewerStore };

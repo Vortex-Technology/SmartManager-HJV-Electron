@@ -1,15 +1,16 @@
 // useLoginStore.ts
 import { Administrator } from '@entities/Administrator';
-import { CreateSessionData } from '@@types/CreateSessionData';
+import { CreateSessionFormData} from '@schemas/createSessionFormSchema'
+import {CreateRegisterFormData} from '@schemas/createRegisterFormSchema'
 import { create } from 'zustand';
-
 
 interface UseAdministratorStore {
   isAuthenticated: boolean;
   isLoading: boolean;
   administrator: Administrator[]
 
-  login: (createSessionData: CreateSessionData) => Promise<void>;
+  login: (createSessionFormData: CreateSessionFormData) => Promise<void>;
+  register: (createRegisterFormData:CreateRegisterFormData) => Promise<void>;
 }
 
 const useAdministratorStore = create<UseAdministratorStore>((set, get) => {
@@ -17,7 +18,7 @@ const useAdministratorStore = create<UseAdministratorStore>((set, get) => {
     isAuthenticated: true,
     isLoading: true,
     administrator: [],
-    login: async (createSessionData) => {
+    login: async (createSessionFormData) => {
       // API
 
       if () {
@@ -26,6 +27,11 @@ const useAdministratorStore = create<UseAdministratorStore>((set, get) => {
         });
       }
     },
+
+    register: async (createRegisterFormData) => {
+      // API
+      get()
+    }
   };
 });
 
