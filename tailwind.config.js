@@ -1,4 +1,4 @@
-const { colors } = require('@styles/variables/colors');
+const { colors } = require('./src/renderer/styles/variables/colors');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
