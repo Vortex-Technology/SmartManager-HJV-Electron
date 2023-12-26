@@ -5,5 +5,5 @@ export interface Administrator {
     url: string | null;
     alt: string;
   };
-  role: 'MASTER' | 'FULL_ACCESS' | 'VIEWER';
+  role: 'MASTER' | 'FULL_ACCESS' | 'VIEWER' | 'EDITOR';
 }
