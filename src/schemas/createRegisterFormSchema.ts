@@ -5,7 +5,7 @@ export const createRegisterFormSchema = z.object({
   login: z.string().min(4).max(25),
   password: z.string().min(8),
   image: z.string().optional(),
-  role: z.string().optional(),
+  role: z.enum(['FULL_ACCESS', 'VIEWER', 'MASTER', 'EDITOR']).optional(),
 });
 
 export type CreateRegisterFormData = z.infer<typeof createRegisterFormSchema>;
