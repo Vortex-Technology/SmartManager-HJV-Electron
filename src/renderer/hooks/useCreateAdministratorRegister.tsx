@@ -4,11 +4,11 @@ import { CreateRegisterFormData } from '@schemas/createRegisterFormSchema';
 export function useCreateAdministratorRegister() {
   const { register } = useAdministratorStore();
 
-  const handleRegisterAdministrator = async (
+  const registerAdministrator = async (
     createRegisterFormData: CreateRegisterFormData,
   ) => {
     await register(createRegisterFormData);
   };
 
-  return { handleRegisterAdministrator };
+  return { registerAdministrator };
 }
