@@ -71,7 +71,6 @@ export function CreateRegisterForm() {
         </Input.Input>
       </Input.Root>
       <button type="submit" disabled={!isDirty ?? isSubmitting}>
-        {' '}
         Cadastrar
       </button>
     </form>
