@@ -9,7 +9,7 @@ const headerStyles = tv({
 interface InputHeaderProps
   extends HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof headerStyles> {
-  asChild: boolean;
+  asChild?: boolean;
 }
 
 export function Header({

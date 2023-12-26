@@ -15,7 +15,7 @@ const labelStyles = tv({
 interface InputLabelProps
   extends LabelHTMLAttributes<HTMLLabelElement>,
     VariantProps<typeof labelStyles> {
-  asChild: boolean;
+  asChild?: boolean;
 }
 
 export function Label({

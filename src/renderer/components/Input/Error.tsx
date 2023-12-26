@@ -9,7 +9,7 @@ const errorStyles = tv({
 interface InputErrorProps
   extends HTMLAttributes<HTMLSpanElement>,
     VariantProps<typeof errorStyles> {
-  asChild: boolean;
+  asChild?: boolean;
 }
 
 export function Error({

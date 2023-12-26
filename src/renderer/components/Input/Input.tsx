@@ -5,8 +5,8 @@ const inputStyles = tv({
   base: 'group flex items-center gap-3 rounded-sm ease-in-out duration-200 border border-transparent disabled:cursor-not-allowed disabled:opacity-30',
   variants: {
     theme: {
-      dark: 'bg-zinc-700 focus-within:border-blue-700',
-      light: 'bg-zinc-300 focus-within:border-blue-800',
+      dark: 'bg-zinc-700 focus-within:border-primary-500',
+      light: 'bg-zinc-300 focus-within:border-primary-800',
     },
     size: {
       xxs: 'p-0.5',
@@ -19,7 +19,7 @@ const inputStyles = tv({
 
   defaultVariants: {
     size: 'md',
-    theme: 'dark',
+    theme: 'light',
   },
 });
 
