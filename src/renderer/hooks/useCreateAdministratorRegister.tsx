@@ -2,13 +2,15 @@ import { useAdministratorStore } from '@store/useAdministratorStore';
 import { CreateRegisterFormData } from '@schemas/createRegisterFormSchema';
 
 export function useCreateAdministratorRegister() {
-  const { register } = useAdministratorStore();
+  const { register } = useAdministratorStore((state) => ({
+    register: state.register,
+  }));
 
-  const registerAdministrator = async (
+  const handlerRegister = async (
     createRegisterFormData: CreateRegisterFormData,
   ) => {
-    await register(createRegisterFormData);
+    return register(createRegisterFormData);
   };
 
-  return { registerAdministrator };
+  return { handlerRegister };
 }
