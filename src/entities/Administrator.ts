@@ -1,3 +1,5 @@
+export type AdministratorRole = 'MASTER' | 'FULL_ACCESS' | 'VIEWER' | 'EDITOR';
+
 export interface Administrator {
   id: string;
   name: string;
@@ -5,5 +7,5 @@ export interface Administrator {
     url: string | null;
     alt: string;
   };
-  role: 'MASTER' | 'FULL_ACCESS' | 'VIEWER' | 'EDITOR';
+  role: AdministratorRole;
 }
