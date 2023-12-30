@@ -16,6 +16,6 @@ export async function loginAdministrator(data: CreateSessionFormData) {
       password,
     },
   );
-  console.log(response);
+
   return response;
 }
