@@ -9,6 +9,7 @@ module.exports = {
 
       fontFamily: {
         body: 'Roboto',
+        title: 'Kalnia',
       },
     },
   },
