@@ -9,7 +9,7 @@ export function useCreateAdministratorRegister() {
   const handlerRegister = async (
     createRegisterFormData: CreateRegisterFormData,
   ) => {
-    return register(createRegisterFormData);
+    return await register(createRegisterFormData);
   };
 
   return { handlerRegister };
