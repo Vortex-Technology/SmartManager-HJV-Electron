@@ -7,6 +7,7 @@ import {
 } from '@schemas/createSessionFormSchema';
 import { useCreateAdministratorSession } from '@hooks/useCreateAdministratorSession';
 import { useRoutes } from '@hooks/useRoutes';
+import { Button } from '@components/Button';
 
 export function CreateSessionForm() {
   const {
@@ -29,10 +30,17 @@ export function CreateSessionForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(handleCreateSession)}>
+    <form
+      className="flex flex-col h-full justify-center gap-3 max-w-md mx-auto max-lg:pb-40"
+      onSubmit={handleSubmit(handleCreateSession)}
+    >
+      <span className="font-bold text-2xl mb-10 opacity-70 ">
+        Login de administrador
+      </span>
+
       <Input.Root>
         <Input.Header>
-          <Input.Label>Login</Input.Label>
+          <Input.Label className="opacity-70 text-xs">Usuário</Input.Label>
           <Input.Error>{errors.login?.message}</Input.Error>
         </Input.Header>
         <Input.Input>
@@ -42,7 +50,7 @@ export function CreateSessionForm() {
 
       <Input.Root>
         <Input.Header>
-          <Input.Label>password</Input.Label>
+          <Input.Label className="opacity-70 text-xs">Senha</Input.Label>
           <Input.Error>{errors.password?.message}</Input.Error>
         </Input.Header>
         <Input.Input>
@@ -50,9 +58,31 @@ export function CreateSessionForm() {
         </Input.Input>
       </Input.Root>
 
-      <button type="submit" disabled={!isDirty ?? isSubmitting}>
-        Logar
-      </button>
+      <Button.Root
+        className="bg-primary-700 hover:bg-primary-800 mt-6"
+        type="submit"
+        disabled={!isDirty ?? isSubmitting}
+      >
+        <Button.Text>Logar</Button.Text>
+      </Button.Root>
+
+      <div className="flex justify-between">
+        <button
+          className="text-xs font-bold opacity-70 hover:opacity-100 hover:scale-105 ease-in-out duration-200 "
+          type="button"
+          onClick={() => navigate(`/`)}
+        >
+          Voltar ao inicio
+        </button>
+
+        <button
+          className="text-xs font-bold opacity-70 hover:opacity-100 hover:scale-105 ease-in-out duration-200 "
+          type="button"
+          onClick={() => navigate(`/`)}
+        >
+          Esqueci minha senha
+        </button>
+      </div>
     </form>
   );
 }
