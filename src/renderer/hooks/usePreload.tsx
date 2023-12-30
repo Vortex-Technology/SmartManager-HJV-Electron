@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
+import { socket } from '@services/socket/socketConfig';
 import { useAdministrator } from './useAdministrator';
-import { socket } from '../services/socket/socketConfig';
 
 export function usePreload() {
   const { preloadAdministrator, isLoadingAdministrator } = useAdministrator();
