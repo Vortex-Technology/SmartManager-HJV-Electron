@@ -1,19 +1,18 @@
-import { useRoutes } from '@hooks/useRoutes';
+import { Logo } from '@components/Logo';
+import { Welcome } from '@components/Welcome';
 import { CreateRegisterForm } from './components/CreateRegisterForm';
 
 export function CreateAdministratorRegisterPage() {
-  const { navigate } = useRoutes();
-
   return (
-    <div>
-      <CreateRegisterForm />
-      <br />
-      <br />
-      <br />
+    <main className="flex justify-between h-screen w-screen max-lg:flex-col max-lg:overflow-y-auto">
+      <div className="bg-tertiary-700 w-full flex flex-col p-16 shadow-2xl gap-6">
+        <Logo />
+        <Welcome />
+      </div>
 
-      <button type="button" onClick={() => navigate(`/`)}>
-        Voltar para home
-      </button>
-    </div>
+      <div className="w-full p-10">
+        <CreateRegisterForm />
+      </div>
+    </main>
   );
 }

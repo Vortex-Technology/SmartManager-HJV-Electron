@@ -41,13 +41,20 @@ const useAdministratorStore = create<UseAdministratorStore>((set) => {
     },
 
     login: async (createSessionFormData) => {
-      const statusCodeOfErrors = [statusCode.BadRequest, statusCode.Forbidden];
+      const statusCodeOfErrors = [
+        statusCode.BadRequest,
+        statusCode.Forbidden,
+        undefined,
+      ];
+
       const response = await loginAdministrator(createSessionFormData);
+
       if (statusCodeOfErrors.includes(response.statusCode)) {
         set({
           isAuthenticated: false,
           error: response.message,
         });
+
         return false;
       }
 
@@ -74,14 +81,17 @@ const useAdministratorStore = create<UseAdministratorStore>((set) => {
         statusCode.BadRequest,
         statusCode.Forbidden,
         statusCode.Unauthorized,
+        undefined,
       ];
 
       const response = await createAdministrator(createRegisterFormData);
+
       if (statusCodeOfErrors.includes(response.statusCode)) {
         set({
           isAuthenticated: false,
           error: response.message,
         });
+
         return false;
       }
       return true;
