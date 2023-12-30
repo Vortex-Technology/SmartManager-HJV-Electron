@@ -5,6 +5,8 @@ import {
   createSessionFormSchema,
   CreateSessionFormData,
 } from '@schemas/createSessionFormSchema';
+import { useCreateAdministratorSession } from '@hooks/useCreateAdministratorSession';
+import { useRoutes } from '@hooks/useRoutes';
 
 export function CreateSessionForm() {
   const {
@@ -15,8 +17,15 @@ export function CreateSessionForm() {
     resolver: zodResolver(createSessionFormSchema),
   });
 
-  function handleCreateSession(data: CreateSessionFormData) {
-    console.log(data);
+  const { handleLogin } = useCreateAdministratorSession();
+  const { navigate } = useRoutes();
+
+  async function handleCreateSession(data: CreateSessionFormData) {
+    const loggedIn = await handleLogin(data);
+
+    if (loggedIn) {
+      navigate('/');
+    }
   }
 
   return (
