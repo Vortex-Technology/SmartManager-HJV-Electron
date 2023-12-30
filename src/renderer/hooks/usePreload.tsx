@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
-import { useGetProducts } from './useGetProducts';
+import { useAdministrator } from './useAdministrator';
 
 export function usePreload() {
-  const { getProducts, isLoading } = useGetProducts();
+  const { preloadAdministrator, isLoadingAdministrator } = useAdministrator();
+  const isLoading = isLoadingAdministrator;
 
   useEffect(() => {
-    getProducts();
-  }, [getProducts]);
+    preloadAdministrator();
+  }, [preloadAdministrator]);
 
   return { isLoading };
 }
