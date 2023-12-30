@@ -7,7 +7,7 @@ export function useCreateAdministratorSession() {
   }));
 
   const handleLogin = async (createSessionFormData: CreateSessionFormData) => {
-    return login(createSessionFormData);
+    return await login(createSessionFormData);
   };
 
   return { handleLogin };

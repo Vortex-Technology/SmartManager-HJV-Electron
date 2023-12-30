@@ -15,6 +15,7 @@ module.exports = {
     'no-shadow': 'off',
     'no-unused-vars': 'off',
     'no-console': 'off',
+    'no-return-await': 'off',
     'global-require': 'off',
     '@typescript-eslint/no-shadow': 'error',
     '@typescript-eslint/no-unused-vars': 'error',
