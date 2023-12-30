@@ -1,14 +1,15 @@
 import { useEffect } from 'react';
-import { useGetProducts } from './useGetProducts';
+import { useAdministrator } from './useAdministrator';
 import { socket } from '../services/socket/socketConfig';
 
 export function usePreload() {
-  const { getProducts, isLoading } = useGetProducts();
+  const { preloadAdministrator, isLoadingAdministrator } = useAdministrator();
+  const isLoading = isLoadingAdministrator;
 
   useEffect(() => {
+    preloadAdministrator();
     socket.connect();
-    getProducts();
-  }, [getProducts]);
+  }, [preloadAdministrator]);
 
   return { isLoading };
 }

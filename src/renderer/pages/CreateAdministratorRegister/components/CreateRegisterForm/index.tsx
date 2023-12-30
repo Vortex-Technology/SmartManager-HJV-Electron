@@ -5,6 +5,8 @@ import {
   CreateRegisterFormData,
   createRegisterFormSchema,
 } from '@schemas/createRegisterFormSchema';
+import { useCreateAdministratorRegister } from '@hooks/useCreateAdministratorRegister';
+import { useRoutes } from '@hooks/useRoutes';
 
 export function CreateRegisterForm() {
   const {
@@ -15,8 +17,14 @@ export function CreateRegisterForm() {
     resolver: zodResolver(createRegisterFormSchema),
   });
 
-  function handleRegisterAdministrator(data: CreateRegisterFormData) {
+  const { navigate } = useRoutes();
+  const { handlerRegister } = useCreateAdministratorRegister();
+  async function handleRegisterAdministrator(data: CreateRegisterFormData) {
+    const registered = await handlerRegister(data);
     console.log(data);
+    if (registered) {
+      navigate('/');
+    }
   }
 
   return (
