@@ -15,8 +15,14 @@ export function HomePage() {
       <br />
       <br />
       <br />
-      <button type="button" onClick={() => navigate(`/viewer/login`)}>
-        Viewer
+      <button type="button" onClick={() => navigate(`/attendant/login`)}>
+        Atendente
+      </button>
+      <br />
+      <br />
+      <br />
+      <button type="button" onClick={() => navigate(`/seller/login`)}>
+        Vendedor
       </button>
       <br />
       <br />
