@@ -36,6 +36,7 @@ const useAdministratorStore = create<UseAdministratorStore>((set) => {
       const accessToken = localStorageFunctions.get<string>(
         localStorageKeys.accessToken,
       );
+
       if (accessToken) connection.setDefaultBearerToken(accessToken);
       set({ isLoading: false });
     },
@@ -48,8 +49,8 @@ const useAdministratorStore = create<UseAdministratorStore>((set) => {
       ];
 
       const response = await loginAdministrator(createSessionFormData);
-
-      if (statusCodeOfErrors.includes(response.statusCode)) {
+      console.log(response);
+      if (statusCodeOfErrors.includes(response.status)) {
         set({
           isAuthenticated: false,
           error: response.message,
@@ -86,7 +87,7 @@ const useAdministratorStore = create<UseAdministratorStore>((set) => {
 
       const response = await createAdministrator(createRegisterFormData);
 
-      if (statusCodeOfErrors.includes(response.statusCode)) {
+      if (statusCodeOfErrors.includes(response.status)) {
         set({
           isAuthenticated: false,
           error: response.message,
@@ -94,6 +95,7 @@ const useAdministratorStore = create<UseAdministratorStore>((set) => {
 
         return false;
       }
+
       return true;
     },
   };
