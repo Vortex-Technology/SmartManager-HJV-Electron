@@ -15,20 +15,29 @@ export function HomePage() {
       <br />
       <br />
       <br />
-      <button type="button" onClick={() => navigate(`/viewer/login`)}>
-        Viewer
+      <button type="button" onClick={() => navigate(`/attendant/login`)}>
+        Atendente
       </button>
       <br />
       <br />
       <br />
-      <button type="button" onClick={() => navigate(`/register/administrator`)}>
-        Cadastrar Administrator
+      <button type="button" onClick={() => navigate(`/seller/login`)}>
+        Vendedor
       </button>
       <br />
       <br />
       <br />
-      <button type="button" onClick={() => navigate(`/register/employee`)}>
-        Cadastrar Employee
+      <button type="button" onClick={() => navigate(`/administrator/register`)}>
+        Cadastrar Administrador
+      </button>
+      <br />
+      <br />
+      <br />
+      <button
+        type="button"
+        onClick={() => navigate(`/administrator/collaborator/register`)}
+      >
+        Cadastrar Colaborador
       </button>
     </div>
   );

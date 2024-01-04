@@ -1,34 +1,25 @@
-// useLoginStore.ts
-import { Administrator } from '@entities/Administrator';
+import { localStorageKeys } from '@config/localStorageKeys';
 import { CreateSessionFormData } from '@schemas/createSessionFormSchema';
-import { CreateRegisterFormData } from '@schemas/createRegisterFormSchema';
-import { create } from 'zustand';
-import { createAdministrator } from '@services/api/administrator/CreateAdministrator';
-import { loginAdministrator } from '@services/api/administrator/LoginAdministrator';
+import { loginAttendant } from '@services/api/attendant/LoginAttendant';
 import { statusCode } from '@services/api/responses/statusCode';
 import { connection } from '@services/axios-config';
 import { localStorageFunctions } from '@services/localStorage/localStorageFunctions';
-import { localStorageKeys } from '@config/localStorageKeys';
+import { create } from 'zustand';
 
-interface UseAdministratorStore {
+interface UseAttendantStore {
   isAuthenticated: boolean;
   isLoading: boolean;
-  administrators: Administrator[];
 
   error: string | null;
 
   login: (createSessionFormData: CreateSessionFormData) => Promise<boolean>;
-  register: (
-    createRegisterFormData: CreateRegisterFormData,
-  ) => Promise<boolean>;
   preload: () => void;
 }
 
-const useAdministratorStore = create<UseAdministratorStore>((set) => {
+const useAttendantStore = create<UseAttendantStore>((set) => {
   return {
     isAuthenticated: true,
     isLoading: true,
-    administrators: [],
     error: null,
 
     preload: () => {
@@ -36,7 +27,6 @@ const useAdministratorStore = create<UseAdministratorStore>((set) => {
       const accessToken = localStorageFunctions.get<string>(
         localStorageKeys.accessToken,
       );
-
       if (accessToken) connection.setDefaultBearerToken(accessToken);
       set({ isLoading: false });
     },
@@ -48,8 +38,8 @@ const useAdministratorStore = create<UseAdministratorStore>((set) => {
         undefined,
       ];
 
-      const response = await loginAdministrator(createSessionFormData);
-      console.log(response);
+      const response = await loginAttendant(createSessionFormData);
+
       if (statusCodeOfErrors.includes(response.status)) {
         set({
           isAuthenticated: false,
@@ -76,29 +66,7 @@ const useAdministratorStore = create<UseAdministratorStore>((set) => {
       });
       return true;
     },
-
-    register: async (createRegisterFormData) => {
-      const statusCodeOfErrors = [
-        statusCode.BadRequest,
-        statusCode.Forbidden,
-        statusCode.Unauthorized,
-        undefined,
-      ];
-
-      const response = await createAdministrator(createRegisterFormData);
-
-      if (statusCodeOfErrors.includes(response.status)) {
-        set({
-          isAuthenticated: false,
-          error: response.message,
-        });
-
-        return false;
-      }
-
-      return true;
-    },
   };
 });
 
-export { useAdministratorStore };
+export { useAttendantStore };

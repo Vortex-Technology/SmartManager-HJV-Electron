@@ -2,9 +2,11 @@ import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 import { HomePage } from '@pages/Home';
 import { usePreload } from '@hooks/usePreload';
 import { CreateAdministratorSessionPage } from '@pages/CreateAdministratorSession';
-import { CreateViewerSessionPage } from '@pages/CreateViewerSession';
+import { CreateAttendantSessionPage } from '@pages/CreateAttendantSession';
+import { CreateSellerSessionPage } from '@pages/CreateSellerSession';
 import { CreateAdministratorRegisterPage } from '@pages/CreateAdministratorRegister';
-import { CreateEmployeeRegisterPage } from '@pages/CreateEmployeRegister';
+import { CreateCollaboratorRegisterPage } from '@pages/CreateCollaboratorRegister';
+import { ProtectedRoutes } from '@layouts/ProtectedRoutes';
 
 export function AppRoutes() {
   const { isLoading } = usePreload();
@@ -18,21 +20,27 @@ export function AppRoutes() {
       <Routes>
         <Route path="/" element={<HomePage />} />
 
+        <Route path="/administrator" element={<ProtectedRoutes />}>
+          <Route
+            path="/administrator/register"
+            element={<CreateAdministratorRegisterPage />}
+          />
+          <Route
+            path="/administrator/collaborator/register"
+            element={<CreateCollaboratorRegisterPage />}
+          />
+        </Route>
+
         <Route
           path="/administrator/login"
           element={<CreateAdministratorSessionPage />}
         />
 
-        <Route path="/viewer/login" element={<CreateViewerSessionPage />} />
+        <Route path="/seller/login" element={<CreateSellerSessionPage />} />
 
         <Route
-          path="/register/administrator"
-          element={<CreateAdministratorRegisterPage />}
-        />
-
-        <Route
-          path="/register/employee"
-          element={<CreateEmployeeRegisterPage />}
+          path="/attendant/login"
+          element={<CreateAttendantSessionPage />}
         />
       </Routes>
     </Router>

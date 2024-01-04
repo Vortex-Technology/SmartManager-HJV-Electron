@@ -1,7 +1,7 @@
 import { useRoutes } from '@hooks/useRoutes';
-import { CreateRegisterForm } from './components';
+import { CreateRegisterForm } from './components/CreateRegisterForm';
 
-export function CreateEmployeeRegisterPage() {
+export function CreateCollaboratorRegisterPage() {
   const { navigate } = useRoutes();
 
   return (

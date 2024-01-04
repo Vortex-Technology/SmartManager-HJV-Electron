@@ -12,7 +12,7 @@ type Errors = {
 export interface Response<T = unknown> {
   message?: string;
   error?: string;
-  statusCode: number;
+  status: number;
   data?: T;
   errors?: Errors;
 }
