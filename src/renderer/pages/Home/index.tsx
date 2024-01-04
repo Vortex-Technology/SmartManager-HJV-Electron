@@ -27,14 +27,17 @@ export function HomePage() {
       <br />
       <br />
       <br />
-      <button type="button" onClick={() => navigate(`/register/administrator`)}>
-        Cadastrar Administrator
+      <button type="button" onClick={() => navigate(`/administrator/register`)}>
+        Cadastrar Administrador
       </button>
       <br />
       <br />
       <br />
-      <button type="button" onClick={() => navigate(`/register/employee`)}>
-        Cadastrar Employee
+      <button
+        type="button"
+        onClick={() => navigate(`/administrator/collaborator/register`)}
+      >
+        Cadastrar Colaborador
       </button>
     </div>
   );
