@@ -5,10 +5,12 @@ import { statusCode } from '@services/api/responses/statusCode';
 import { connection } from '@services/axios-config';
 import { localStorageFunctions } from '@services/localStorage/localStorageFunctions';
 import { create } from 'zustand';
+import { Collaborator } from '@entities/Collaborator';
 
 interface UseSellerStore {
   isAuthenticated: boolean;
   isLoading: boolean;
+  sellerLogged: null | Collaborator;
 
   error: string | null;
 
@@ -21,6 +23,7 @@ const useSellerStore = create<UseSellerStore>((set) => {
     isAuthenticated: true,
     isLoading: true,
     error: null,
+    sellerLogged: null,
 
     preload: () => {
       set({ isLoading: true });

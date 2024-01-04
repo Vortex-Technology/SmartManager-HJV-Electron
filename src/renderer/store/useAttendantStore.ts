@@ -1,4 +1,5 @@
 import { localStorageKeys } from '@config/localStorageKeys';
+import { Collaborator } from '@entities/Collaborator';
 import { CreateSessionFormData } from '@schemas/createSessionFormSchema';
 import { loginAttendant } from '@services/api/attendant/LoginAttendant';
 import { statusCode } from '@services/api/responses/statusCode';
@@ -9,6 +10,7 @@ import { create } from 'zustand';
 interface UseAttendantStore {
   isAuthenticated: boolean;
   isLoading: boolean;
+  attendantLogged: null | Collaborator;
 
   error: string | null;
 
@@ -21,6 +23,7 @@ const useAttendantStore = create<UseAttendantStore>((set) => {
     isAuthenticated: true,
     isLoading: true,
     error: null,
+    attendantLogged: null,
 
     preload: () => {
       set({ isLoading: true });

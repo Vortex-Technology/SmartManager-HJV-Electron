@@ -14,6 +14,7 @@ interface UseAdministratorStore {
   isAuthenticated: boolean;
   isLoading: boolean;
   administrators: Administrator[];
+  administratorLogged: Administrator | null;
 
   error: string | null;
 
@@ -30,14 +31,17 @@ const useAdministratorStore = create<UseAdministratorStore>((set) => {
     isLoading: true,
     administrators: [],
     error: null,
+    administratorLogged: null,
 
     preload: () => {
       set({ isLoading: true });
+
       const accessToken = localStorageFunctions.get<string>(
         localStorageKeys.accessToken,
       );
 
       if (accessToken) connection.setDefaultBearerToken(accessToken);
+
       set({ isLoading: false });
     },
 
@@ -49,7 +53,7 @@ const useAdministratorStore = create<UseAdministratorStore>((set) => {
       ];
 
       const response = await loginAdministrator(createSessionFormData);
-      console.log(response);
+
       if (statusCodeOfErrors.includes(response.status)) {
         set({
           isAuthenticated: false,
@@ -74,6 +78,7 @@ const useAdministratorStore = create<UseAdministratorStore>((set) => {
       set({
         isAuthenticated: true,
       });
+
       return true;
     },
 
