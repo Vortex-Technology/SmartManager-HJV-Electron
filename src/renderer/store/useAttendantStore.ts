@@ -1,6 +1,6 @@
 import { localStorageKeys } from '@config/localStorageKeys';
 import { CreateSessionFormData } from '@schemas/createSessionFormSchema';
-import { loginAttendant } from '@services/api/administrator/LoginAttendant';
+import { loginAttendant } from '@services/api/attendant/LoginAttendant';
 import { statusCode } from '@services/api/responses/statusCode';
 import { connection } from '@services/axios-config';
 import { localStorageFunctions } from '@services/localStorage/localStorageFunctions';
@@ -40,7 +40,7 @@ const useAttendantStore = create<UseAttendantStore>((set) => {
 
       const response = await loginAttendant(createSessionFormData);
 
-      if (statusCodeOfErrors.includes(response.statusCode)) {
+      if (statusCodeOfErrors.includes(response.status)) {
         set({
           isAuthenticated: false,
           error: response.message,

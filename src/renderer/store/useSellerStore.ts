@@ -1,6 +1,6 @@
 import { localStorageKeys } from '@config/localStorageKeys';
 import { CreateSessionFormData } from '@schemas/createSessionFormSchema';
-import { loginSeller } from '@services/api/administrator/LoginSeller';
+import { loginSeller } from '@services/api/seller/LoginSeller';
 import { statusCode } from '@services/api/responses/statusCode';
 import { connection } from '@services/axios-config';
 import { localStorageFunctions } from '@services/localStorage/localStorageFunctions';
@@ -40,7 +40,7 @@ const useSellerStore = create<UseSellerStore>((set) => {
 
       const response = await loginSeller(createSessionFormData);
 
-      if (statusCodeOfErrors.includes(response.statusCode)) {
+      if (statusCodeOfErrors.includes(response.status)) {
         set({
           isAuthenticated: false,
           error: response.message,
