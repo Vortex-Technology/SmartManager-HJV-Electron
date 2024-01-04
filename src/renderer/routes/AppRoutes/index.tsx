@@ -6,6 +6,7 @@ import { CreateAttendantSessionPage } from '@pages/CreateAttendantSession';
 import { CreateSellerSessionPage } from '@pages/CreateSellerSession';
 import { CreateAdministratorRegisterPage } from '@pages/CreateAdministratorRegister';
 import { CreateCollaboratorRegisterPage } from '@pages/CreateCollaboratorRegister';
+import { ProtectedRoutes } from '@layouts/ProtectedRoutes';
 
 export function AppRoutes() {
   const { isLoading } = usePreload();
@@ -19,22 +20,24 @@ export function AppRoutes() {
       <Routes>
         <Route path="/" element={<HomePage />} />
 
-        <Route
-          path="/register/administrator"
-          element={<CreateAdministratorRegisterPage />}
-        />
+        <Route path="/administrator" element={<ProtectedRoutes />}>
+          <Route
+            path="/administrator/register"
+            element={<CreateAdministratorRegisterPage />}
+          />
+          <Route
+            path="/administrator/collaborator/register"
+            element={<CreateCollaboratorRegisterPage />}
+          />
+        </Route>
 
         <Route
           path="/administrator/login"
           element={<CreateAdministratorSessionPage />}
         />
 
-        <Route
-          path="/register/employee"
-          element={<CreateCollaboratorRegisterPage />}
-        />
-
         <Route path="/seller/login" element={<CreateSellerSessionPage />} />
+
         <Route
           path="/attendant/login"
           element={<CreateAttendantSessionPage />}
