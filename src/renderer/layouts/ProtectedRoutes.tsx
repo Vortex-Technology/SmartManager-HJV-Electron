@@ -1,17 +1,9 @@
-import { Navigate, Outlet } from 'react-router-dom';
-
-function authendicated() {
-  const authorized = true;
-
-  if (authorized) {
-    return authorized;
-  }
-
-  return false;
-}
+import { useAuthenticatedCollaborator } from '@hooks/useAuthenticatedCollaborator';
+import { useRoutes } from '@hooks/useRoutes';
 
 export function ProtectedRoutes() {
-  const auth = authendicated();
+  const { isAuthenticated } = useAuthenticatedCollaborator();
+  const { Navigate, Outlet } = useRoutes();
 
-  return auth ? <Outlet /> : <Navigate to="/" />;
+  return isAuthenticated ? <Outlet /> : <Navigate to="/" />;
 }

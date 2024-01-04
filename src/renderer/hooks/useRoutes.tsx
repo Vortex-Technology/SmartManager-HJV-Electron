@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { Navigate, Outlet, useNavigate, useParams } from 'react-router-dom';
 
 export function useRoutes() {
   const navigate = useNavigate();
@@ -7,5 +7,7 @@ export function useRoutes() {
   return {
     navigate,
     params,
+    Outlet,
+    Navigate,
   };
 }
