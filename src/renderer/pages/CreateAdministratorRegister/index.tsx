@@ -1,5 +1,6 @@
 import { Logo } from '@components/Logo';
 import { Welcome } from '@components/Welcome';
+
 import { CreateRegisterForm } from './components/CreateRegisterForm';
 
 export function CreateAdministratorRegisterPage() {

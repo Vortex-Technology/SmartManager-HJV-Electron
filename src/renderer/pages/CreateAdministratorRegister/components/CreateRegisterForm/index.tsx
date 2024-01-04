@@ -55,7 +55,7 @@ export function CreateRegisterForm() {
       onSubmit={handleSubmit(handleRegisterAdministrator)}
     >
       <span className="font-bold text-2xl mb-10 opacity-70 ">
-        Registrar de administrador
+        Registro de administrador
       </span>
 
       <Input.Root>
