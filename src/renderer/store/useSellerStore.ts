@@ -20,7 +20,7 @@ interface UseSellerStore {
 
 const useSellerStore = create<UseSellerStore>((set) => {
   return {
-    isAuthenticated: true,
+    isAuthenticated: false,
     isLoading: true,
     error: null,
     sellerLogged: null,
