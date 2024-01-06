@@ -5,10 +5,10 @@ import { useAttendantStore } from '@store/useAttendantStore';
 import { useSellerStore } from '@store/useSellerStore';
 
 export function useAuthenticatedCollaborator() {
-  const { admisnistratorIsAuthenticated, administartorLogged } =
+  const { administratorIsAuthenticated, administratorLogged } =
     useAdministratorStore((state) => ({
-      admisnistratorIsAuthenticated: state.isAuthenticated,
-      administartorLogged: state.administratorLogged,
+      administratorIsAuthenticated: state.isAuthenticated,
+      administratorLogged: state.administratorLogged,
     }));
 
   const { sellerIsAuthenticated, sellerLogged } = useSellerStore((state) => ({
@@ -16,20 +16,20 @@ export function useAuthenticatedCollaborator() {
     sellerLogged: state.sellerLogged,
   }));
 
-  const { attendantIsAutenticated, attendantLogged } = useAttendantStore(
+  const { attendantIsAuthenticated, attendantLogged } = useAttendantStore(
     (state) => ({
-      attendantIsAutenticated: state.isAuthenticated,
+      attendantIsAuthenticated: state.isAuthenticated,
       attendantLogged: state.attendantLogged,
     }),
   );
 
   const isAuthenticated =
-    admisnistratorIsAuthenticated ||
+    administratorIsAuthenticated ||
     sellerIsAuthenticated ||
-    attendantIsAutenticated ||
+    attendantIsAuthenticated ||
     false;
 
-  function settupCollaboratorLogged(
+  function setupCollaboratorLogged(
     collaborator: Collaborator | Administrator | null,
   ): (Collaborator & { role: AdministratorRole }) | Administrator | null {
     if (!collaborator) return null;
@@ -45,7 +45,7 @@ export function useAuthenticatedCollaborator() {
   }
 
   const verificationsObjects = [
-    administartorLogged,
+    administratorLogged,
     sellerLogged,
     attendantLogged,
   ];
@@ -54,7 +54,7 @@ export function useAuthenticatedCollaborator() {
     (item) => item !== null,
   );
 
-  const collaboratorLogged = settupCollaboratorLogged(
+  const collaboratorLogged = setupCollaboratorLogged(
     verificationsObjects[validIndexObject],
   );
 
