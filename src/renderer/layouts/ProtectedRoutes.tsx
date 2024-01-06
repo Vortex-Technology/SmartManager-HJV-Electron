@@ -5,5 +5,12 @@ export function ProtectedRoutes() {
   const { isAuthenticated } = useAuthenticatedCollaborator();
   const { Navigate, Outlet } = useRoutes();
 
-  return isAuthenticated ? <Outlet /> : <Navigate to="/" />;
+  return isAuthenticated ? (
+    <>
+      <Outlet />
+      OI
+    </>
+  ) : (
+    <Navigate to="/" />
+  );
 }
