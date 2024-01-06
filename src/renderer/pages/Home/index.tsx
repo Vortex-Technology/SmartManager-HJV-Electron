@@ -39,6 +39,14 @@ export function HomePage() {
       >
         Cadastrar Colaborador
       </button>
+      <br />
+
+      <button
+        type="button"
+        onClick={() => navigate(`/administrator/interface`)}
+      >
+        interface do administrador
+      </button>
     </div>
   );
 }

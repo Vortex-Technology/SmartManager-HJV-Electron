@@ -7,6 +7,7 @@ import { CreateSellerSessionPage } from '@pages/CreateSellerSession';
 import { CreateAdministratorRegisterPage } from '@pages/CreateAdministratorRegister';
 import { CreateCollaboratorRegisterPage } from '@pages/CreateCollaboratorRegister';
 import { ProtectedRoutes } from '@layouts/ProtectedRoutes';
+import { DashboardPage } from '@pages/Dashboard';
 
 export function AppRoutes() {
   const { isLoading } = usePreload();
@@ -29,6 +30,8 @@ export function AppRoutes() {
             path="/administrator/collaborator/register"
             element={<CreateCollaboratorRegisterPage />}
           />
+
+          <Route path="/administrator/interface" element={<DashboardPage />} />
         </Route>
 
         <Route

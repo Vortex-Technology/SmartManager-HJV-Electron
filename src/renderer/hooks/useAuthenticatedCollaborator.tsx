@@ -26,7 +26,8 @@ export function useAuthenticatedCollaborator() {
   const isAuthenticated =
     admisnistratorIsAuthenticated ||
     sellerIsAuthenticated ||
-    attendantIsAutenticated;
+    attendantIsAutenticated ||
+    false;
 
   function settupCollaboratorLogged(
     collaborator: Collaborator | Administrator | null,

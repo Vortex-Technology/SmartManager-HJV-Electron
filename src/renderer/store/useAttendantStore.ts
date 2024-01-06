@@ -20,7 +20,7 @@ interface UseAttendantStore {
 
 const useAttendantStore = create<UseAttendantStore>((set) => {
   return {
-    isAuthenticated: true,
+    isAuthenticated: false,
     isLoading: true,
     error: null,
     attendantLogged: null,
