@@ -1,4 +1,3 @@
-// useLoginStore.ts
 import { Administrator } from '@entities/Administrator';
 import { CreateSessionFormData } from '@schemas/createSessionFormSchema';
 import { CreateRegisterFormData } from '@schemas/createRegisterFormSchema';
@@ -9,6 +8,7 @@ import { statusCode } from '@services/api/responses/statusCode';
 import { connection } from '@services/axios-config';
 import { localStorageFunctions } from '@services/localStorage/localStorageFunctions';
 import { localStorageKeys } from '@config/localStorageKeys';
+import { getAdministratorRequest } from '@services/api/administrator/GetAdministratorRequest';
 
 interface UseAdministratorStore {
   isAuthenticated: boolean;
@@ -22,18 +22,19 @@ interface UseAdministratorStore {
   register: (
     createRegisterFormData: CreateRegisterFormData,
   ) => Promise<boolean>;
-  preload: () => void;
+  preload: () => Promise<void>;
+  getAdministrator: () => Promise<boolean>;
 }
 
-const useAdministratorStore = create<UseAdministratorStore>((set) => {
+const useAdministratorStore = create<UseAdministratorStore>((set, get) => {
   return {
-    isAuthenticated: true,
+    isAuthenticated: false,
     isLoading: true,
     administrators: [],
     error: null,
     administratorLogged: null,
 
-    preload: () => {
+    preload: async () => {
       set({ isLoading: true });
 
       const accessToken = localStorageFunctions.get<string>(
@@ -42,10 +43,12 @@ const useAdministratorStore = create<UseAdministratorStore>((set) => {
 
       if (accessToken) connection.setDefaultBearerToken(accessToken);
 
-      set({ isLoading: false });
+      const { getAdministrator } = get();
+      await getAdministrator();
     },
 
     login: async (createSessionFormData) => {
+      set({ isLoading: true });
       const statusCodeOfErrors = [
         statusCode.BadRequest,
         statusCode.Forbidden,
@@ -56,6 +59,7 @@ const useAdministratorStore = create<UseAdministratorStore>((set) => {
 
       if (statusCodeOfErrors.includes(response.status)) {
         set({
+          isLoading: false,
           isAuthenticated: false,
           error: response.message,
         });
@@ -78,11 +82,15 @@ const useAdministratorStore = create<UseAdministratorStore>((set) => {
       set({
         isAuthenticated: true,
       });
+      const { getAdministrator } = get();
+      await getAdministrator();
 
       return true;
     },
 
     register: async (createRegisterFormData) => {
+      set({ isLoading: true });
+
       const statusCodeOfErrors = [
         statusCode.BadRequest,
         statusCode.Forbidden,
@@ -94,12 +102,36 @@ const useAdministratorStore = create<UseAdministratorStore>((set) => {
 
       if (statusCodeOfErrors.includes(response.status)) {
         set({
+          isLoading: false,
           isAuthenticated: false,
           error: response.message,
         });
 
         return false;
       }
+      set({ isLoading: false });
+      return true;
+    },
+
+    getAdministrator: async () => {
+      const statusCodeOfErrors = [
+        statusCode.BadRequest,
+        statusCode.Forbidden,
+        statusCode.Unauthorized,
+        undefined,
+      ];
+      const response = await getAdministratorRequest();
+
+      if (statusCodeOfErrors.includes(response.status)) {
+        set({ isLoading: false, error: response.message });
+        return false;
+      }
+
+      set({
+        administratorLogged: response.data?.administrator,
+        isLoading: false,
+        isAuthenticated: true,
+      });
 
       return true;
     },
