@@ -1,12 +1,13 @@
+import { Page404 } from '@components/404';
 import { useAuthenticatedCollaborator } from '@hooks/useAuthenticatedCollaborator';
 
 export function DashboardPage() {
   const { collaboratorLogged } = useAuthenticatedCollaborator();
 
-  if (!collaboratorLogged) return null;
+  if (!collaboratorLogged) return <Page404 />;
 
   return (
-    <div>
+    <div className="w-full h-full bg-neutral-100">
       <div>
         <p>Perfil</p>
         <div>ID: {collaboratorLogged.id}</div>

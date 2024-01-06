@@ -6,7 +6,7 @@ export function CreateAdministratorSessionPage() {
   return (
     <main className="flex justify-between h-screen w-screen max-lg:flex-col max-lg:overflow-y-auto">
       <div className="bg-tertiary-700 w-full flex flex-col p-16 shadow-2xl gap-6">
-        <Logo />
+        <Logo color="invert" />
         <Welcome />
       </div>
 
