@@ -6,7 +6,7 @@ import { connection } from '@services/axios-config';
 import { localStorageFunctions } from '@services/localStorage/localStorageFunctions';
 import { create } from 'zustand';
 import { Collaborator } from '@entities/Collaborator';
-import { getSellerRequest } from '@services/api/seller/GetAdministratorRequest';
+import { getSellerRequest } from '@services/api/seller/GetASellerRequest';
 
 interface UseSellerStore {
   isAuthenticated: boolean;
