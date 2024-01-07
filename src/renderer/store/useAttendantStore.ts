@@ -1,6 +1,7 @@
 import { localStorageKeys } from '@config/localStorageKeys';
 import { Collaborator } from '@entities/Collaborator';
 import { CreateSessionFormData } from '@schemas/createSessionFormSchema';
+import { getAttendantRequest } from '@services/api/attendant/GetAttendantRequest';
 import { loginAttendant } from '@services/api/attendant/LoginAttendant';
 import { statusCode } from '@services/api/responses/statusCode';
 import { connection } from '@services/axios-config';
@@ -15,23 +16,29 @@ interface UseAttendantStore {
   error: string | null;
 
   login: (createSessionFormData: CreateSessionFormData) => Promise<boolean>;
-  preload: () => void;
+  preload: () => Promise<void>;
+  getAttendant: () => Promise<boolean>;
 }
 
-const useAttendantStore = create<UseAttendantStore>((set) => {
+const useAttendantStore = create<UseAttendantStore>((set, get) => {
   return {
     isAuthenticated: false,
     isLoading: true,
     error: null,
     attendantLogged: null,
 
-    preload: () => {
+    preload: async () => {
       set({ isLoading: true });
+
       const accessToken = localStorageFunctions.get<string>(
         localStorageKeys.accessToken,
       );
+
       if (accessToken) connection.setDefaultBearerToken(accessToken);
       set({ isLoading: false });
+
+      const { getAttendant } = get();
+      await getAttendant();
     },
 
     login: async (createSessionFormData) => {
@@ -45,6 +52,7 @@ const useAttendantStore = create<UseAttendantStore>((set) => {
 
       if (statusCodeOfErrors.includes(response.status)) {
         set({
+          isLoading: false,
           isAuthenticated: false,
           error: response.message,
         });
@@ -67,6 +75,33 @@ const useAttendantStore = create<UseAttendantStore>((set) => {
       set({
         isAuthenticated: true,
       });
+
+      const { getAttendant } = get();
+      await getAttendant();
+
+      return true;
+    },
+
+    getAttendant: async () => {
+      const statusCodeOfErrors = [
+        statusCode.BadRequest,
+        statusCode.Conflict,
+        undefined,
+      ];
+
+      const response = await getAttendantRequest();
+
+      if (statusCodeOfErrors.includes(response.status)) {
+        set({ isLoading: false, error: response.message });
+        return false;
+      }
+
+      set({
+        attendantLogged: response.data?.administrator,
+        isLoading: false,
+        isAuthenticated: true,
+      });
+
       return true;
     },
   };
