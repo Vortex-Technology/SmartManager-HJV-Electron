@@ -9,6 +9,7 @@ import { connection } from '@services/axios-config';
 import { localStorageFunctions } from '@services/localStorage/localStorageFunctions';
 import { localStorageKeys } from '@config/localStorageKeys';
 import { getAdministratorRequest } from '@services/api/administrator/GetAdministratorRequest';
+import { deleteAdministratorRequest } from '@services/api/administrator/DeleteAdministratorRequest';
 
 interface UseAdministratorStore {
   isAuthenticated: boolean;
@@ -24,6 +25,7 @@ interface UseAdministratorStore {
   ) => Promise<boolean>;
   preload: () => Promise<void>;
   getAdministrator: () => Promise<boolean>;
+  deleteAdministrator: (id: string) => void;
 }
 
 const useAdministratorStore = create<UseAdministratorStore>((set, get) => {
@@ -129,6 +131,31 @@ const useAdministratorStore = create<UseAdministratorStore>((set, get) => {
 
       set({
         administratorLogged: response.data?.administrator,
+        isLoading: false,
+        isAuthenticated: true,
+      });
+
+      return true;
+    },
+
+    deleteAdministrator: async (id) => {
+      const statusCodeOfErrors = [
+        statusCode.BadRequest,
+        statusCode.Forbidden,
+        statusCode.NotFound,
+        statusCode.Conflict,
+        undefined,
+      ];
+
+      const response = await deleteAdministratorRequest(id);
+
+      if (statusCodeOfErrors.includes(response.status)) {
+        set({ isLoading: false, error: response.message });
+
+        return false;
+      }
+
+      set({
         isLoading: false,
         isAuthenticated: true,
       });
