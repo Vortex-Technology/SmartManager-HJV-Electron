@@ -1,8 +1,8 @@
 import { localStorageKeys } from '@config/localStorageKeys';
 import { Collaborator } from '@entities/Collaborator';
 import { CreateSessionFormData } from '@schemas/createSessionFormSchema';
-import { getAttendantRequest } from '@services/api/attendant/GetAttendantRequest';
-import { loginAttendant } from '@services/api/attendant/LoginAttendant';
+import { getAttendantRequest } from '@services/api/attendant/getAttendantRequest';
+import { loginAttendant } from '@services/api/attendant/loginAttendantRequest';
 import { statusCode } from '@services/api/responses/statusCode';
 import { connection } from '@services/axios-config';
 import { localStorageFunctions } from '@services/localStorage/localStorageFunctions';

@@ -2,14 +2,14 @@ import { Administrator } from '@entities/Administrator';
 import { CreateSessionFormData } from '@schemas/createSessionFormSchema';
 import { CreateRegisterFormData } from '@schemas/createRegisterFormSchema';
 import { create } from 'zustand';
-import { createAdministrator } from '@services/api/administrator/CreateAdministrator';
-import { loginAdministrator } from '@services/api/administrator/LoginAdministrator';
+import { createAdministrator } from '@services/api/administrator/createAdministratorRequest';
+import { loginAdministrator } from '@services/api/administrator/loginAdministratorRequest';
 import { statusCode } from '@services/api/responses/statusCode';
 import { connection } from '@services/axios-config';
 import { localStorageFunctions } from '@services/localStorage/localStorageFunctions';
 import { localStorageKeys } from '@config/localStorageKeys';
-import { getAdministratorRequest } from '@services/api/administrator/GetAdministratorRequest';
-import { deleteAdministratorRequest } from '@services/api/administrator/DeleteAdministratorRequest';
+import { getAdministratorRequest } from '@services/api/administrator/getAdministratorRequest';
+import { deleteAdministratorRequest } from '@services/api/administrator/deleteAdministratorRequest';
 
 interface UseAdministratorStore {
   isAuthenticated: boolean;
