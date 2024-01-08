@@ -6,6 +6,7 @@ import { connection } from '@services/axios-config';
 import { localStorageFunctions } from '@services/localStorage/localStorageFunctions';
 import { create } from 'zustand';
 import { Collaborator } from '@entities/Collaborator';
+import { getSellerRequest } from '@services/api/seller/GetASellerRequest';
 
 interface UseSellerStore {
   isAuthenticated: boolean;
@@ -15,23 +16,29 @@ interface UseSellerStore {
   error: string | null;
 
   login: (createSessionFormData: CreateSessionFormData) => Promise<boolean>;
-  preload: () => void;
+  preload: () => Promise<void>;
+  getSeller: () => Promise<boolean>;
 }
 
-const useSellerStore = create<UseSellerStore>((set) => {
+const useSellerStore = create<UseSellerStore>((set, get) => {
   return {
     isAuthenticated: false,
     isLoading: true,
     error: null,
     sellerLogged: null,
 
-    preload: () => {
+    preload: async () => {
       set({ isLoading: true });
+
       const accessToken = localStorageFunctions.get<string>(
         localStorageKeys.accessToken,
       );
+
       if (accessToken) connection.setDefaultBearerToken(accessToken);
       set({ isLoading: false });
+
+      const { getSeller } = get();
+      await getSeller();
     },
 
     login: async (createSessionFormData) => {
@@ -45,6 +52,7 @@ const useSellerStore = create<UseSellerStore>((set) => {
 
       if (statusCodeOfErrors.includes(response.status)) {
         set({
+          isLoading: false,
           isAuthenticated: false,
           error: response.message,
         });
@@ -67,6 +75,33 @@ const useSellerStore = create<UseSellerStore>((set) => {
       set({
         isAuthenticated: true,
       });
+
+      const { getSeller } = get();
+      await getSeller();
+
+      return true;
+    },
+
+    getSeller: async () => {
+      const statusCodeOfErrors = [
+        statusCode.BadRequest,
+        statusCode.Conflict,
+        undefined,
+      ];
+
+      const response = await getSellerRequest();
+
+      if (statusCodeOfErrors.includes(response.status)) {
+        set({ isLoading: false, error: response.message });
+        return false;
+      }
+
+      set({
+        sellerLogged: response.data?.administrator,
+        isLoading: false,
+        isAuthenticated: true,
+      });
+
       return true;
     },
   };
