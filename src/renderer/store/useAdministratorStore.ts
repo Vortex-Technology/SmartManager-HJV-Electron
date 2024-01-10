@@ -25,7 +25,7 @@ interface UseAdministratorStore {
   ) => Promise<boolean>;
   preload: () => Promise<void>;
   getAdministrator: () => Promise<boolean>;
-  deleteAdministrator: (id: string) => void;
+  deleteAdministrator: (id: string) => Promise<boolean>;
 }
 
 const useAdministratorStore = create<UseAdministratorStore>((set, get) => {
@@ -157,7 +157,6 @@ const useAdministratorStore = create<UseAdministratorStore>((set, get) => {
 
       set({
         isLoading: false,
-        isAuthenticated: true,
       });
 
       return true;
