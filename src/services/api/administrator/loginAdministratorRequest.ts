@@ -10,7 +10,7 @@ export async function loginAdministrator(data: CreateSessionFormData) {
   const { login, password } = data;
 
   const response = await connection.post<LoginAdministratorResponse>(
-    '/administrator/login',
+    '/administrators/login',
     {
       login,
       password,

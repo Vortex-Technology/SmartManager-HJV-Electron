@@ -9,10 +9,13 @@ interface LoginSellerResponse {
 export async function loginSeller(data: CreateSessionFormData) {
   const { login, password } = data;
 
-  const response = await connection.post<LoginSellerResponse>('/seller/login', {
-    login,
-    password,
-  });
+  const response = await connection.post<LoginSellerResponse>(
+    '/sellers/login',
+    {
+      login,
+      password,
+    },
+  );
 
   return response;
 }

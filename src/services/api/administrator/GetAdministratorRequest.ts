@@ -3,7 +3,7 @@ import { Administrator } from '@entities/Administrator';
 
 export async function getAdministratorRequest() {
   const response = await connection.get<{ administrator: Administrator }>(
-    '/administrator',
+    '/administrators',
   );
 
   return response;

@@ -10,7 +10,7 @@ export async function loginAttendant(data: CreateSessionFormData) {
   const { login, password } = data;
 
   const response = await connection.post<LoginAttendantResponse>(
-    '/attendant/login',
+    '/attendants/login',
     {
       login,
       password,
