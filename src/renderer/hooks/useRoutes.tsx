@@ -9,7 +9,7 @@ import {
 
 export function useRoutes() {
   const navigate = useNavigate();
-  const params = useParams();
+  const { ...params } = useParams();
   const { pathname } = useLocation();
 
   return {
