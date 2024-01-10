@@ -56,7 +56,7 @@ export function DashboardNavigation() {
           open={isOpen}
           icon={<Trash />}
           text="Excluir Admin"
-          navigateTo="/dashboard/collaborators/delete/"
+          navigateTo="/dashboard/collaborators/delete/:id"
         />
       </SideBarNavigation.Navigation>
     </SideBarNavigation.Root>
