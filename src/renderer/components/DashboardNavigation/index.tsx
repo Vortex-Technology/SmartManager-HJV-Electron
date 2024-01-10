@@ -5,6 +5,7 @@ import {
   LayoutDashboard,
   ShoppingBag,
   Users,
+  Trash,
 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -49,6 +50,13 @@ export function DashboardNavigation() {
           icon={<ClipboardList />}
           text="Relatório"
           navigateTo="/dashboard/reports"
+        />
+
+        <SideBarNavigation.Item
+          open={isOpen}
+          icon={<Trash />}
+          text="Excluir Admin"
+          navigateTo="/dashboard/collaborators/delete/"
         />
       </SideBarNavigation.Navigation>
     </SideBarNavigation.Root>
