@@ -45,6 +45,10 @@
       "source.fixAll.stylelint": "explicit"
     },
     "cSpell.words": [
+      "Cancelar",
+      "Confirmar",
+      "Deleta",
+      "Excluir",
       "gsap",
       "Tweens",
       "zustand"

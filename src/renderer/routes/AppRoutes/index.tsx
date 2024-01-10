@@ -1,8 +1,8 @@
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 import { HomePage } from '@pages/Home';
-import { CreateAdministratorSessionPage } from '@pages/CreateAdministratorSession';
-import { CreateAttendantSessionPage } from '@pages/CreateAttendantSession';
-import { CreateSellerSessionPage } from '@pages/CreateSellerSession';
+import { CreateAdministratorSessionPage } from '@pages/Administrator/CreateAdministratorSession';
+import { CreateAttendantSessionPage } from '@pages/Attendant/CreateAttendantSession';
+import { CreateSellerSessionPage } from '@pages/Seller/CreateSellerSession';
 import { DashboardRoutes } from './dashboard.routes';
 
 export function AppRoutes() {

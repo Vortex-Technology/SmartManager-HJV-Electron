@@ -1,8 +1,9 @@
 import { DashboardLayout } from '@layouts/DashboardLayout';
 import { ProtectedRoutes } from '@layouts/ProtectedRoutes';
-import { CreateAdministratorRegisterPage } from '@pages/CreateAdministratorRegister';
-import { CreateCollaboratorRegisterPage } from '@pages/CreateCollaboratorRegister';
+import { CreateAdministratorRegisterPage } from '@pages/Administrator/CreateAdministratorRegister';
+import { CreateCollaboratorRegisterPage } from '@pages/Collaborator/CreateCollaboratorRegister';
 import { DashboardPage } from '@pages/Dashboard';
+import { DeleteCollaboratorPage } from '@pages/Collaborator/DeleteCollaborator';
 import { Route } from 'react-router-dom';
 
 export function DashboardRoutes() {
@@ -27,6 +28,11 @@ export function DashboardRoutes() {
         <Route
           path="/dashboard/collaborators/register"
           element={<CreateCollaboratorRegisterPage />}
+        />
+
+        <Route
+          path="/dashboard/collaborators/delete/:id"
+          element={<DeleteCollaboratorPage />}
         />
       </Route>
     </Route>,
