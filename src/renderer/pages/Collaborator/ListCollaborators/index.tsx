@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { Collaborator, CollaboratorType } from '@entities/Collaborator';
-import { getCollaborators } from '../../../../listCollaboratorsFake/mockCollaboratorsFake';
+import {
+  CollaboratorType,
+  getCollaborators,
+  Collaborator,
+} from '../../../../listCollaboratorsFake/mockCollaboratorsFake';
 
 export function ListCollaboratorsPage() {
-  // const collaborators: Collaborator[] = [];
-
   const allCollaborators: Collaborator[] = getCollaborators();
   const [selectedType, setSelectedType] = useState<CollaboratorType | null>(
     null,
@@ -23,7 +24,7 @@ export function ListCollaboratorsPage() {
       <h1 className="text-center my-10">
         Selecione um dos cargos para listar os colaboradores
       </h1>
-      <div className="flex justify-between  items-center p-8 my-2">
+      <div className="flex justify-between items-center p-8 my-2">
         {uniqueTypes.map((type) => (
           <span
             key={type}
@@ -31,7 +32,7 @@ export function ListCollaboratorsPage() {
             tabIndex={0}
             onClick={() => handleTypeClick(type)}
             onKeyDown={(e) => e.key === 'Enter' && handleTypeClick(type)}
-            className=" p-8 my-2"
+            className={`p-8 my-2 ${type === selectedType ? 'bg-gray-300' : ''}`}
           >
             {type}
           </span>
