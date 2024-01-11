@@ -1,6 +1,6 @@
 export type CollaboratorType = 'ADMINISTRATOR' | 'SELLER' | 'ATTENDANT';
 
-interface Collaborator {
+export interface Collaborator {
   id: string;
   name: string;
   image: {
