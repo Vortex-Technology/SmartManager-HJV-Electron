@@ -5,6 +5,7 @@ import { CreateCollaboratorRegisterPage } from '@pages/Collaborator/CreateCollab
 import { DashboardPage } from '@pages/Dashboard';
 import { DeleteCollaboratorPage } from '@pages/Collaborator/DeleteCollaborator';
 import { Route } from 'react-router-dom';
+import { ListCollaboratorsPage } from '@pages/Collaborator/ListCollaborators';
 
 export function DashboardRoutes() {
   return [
@@ -16,7 +17,10 @@ export function DashboardRoutes() {
 
         <Route path="/dashboard/sales" element={<DashboardPage />} />
 
-        <Route path="/dashboard/collaborators" element={<DashboardPage />} />
+        <Route
+          path="/dashboard/collaborators"
+          element={<ListCollaboratorsPage />}
+        />
 
         <Route path="/dashboard/reports" element={<DashboardPage />} />
 
