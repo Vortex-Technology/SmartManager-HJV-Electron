@@ -4,7 +4,7 @@ import { CreateSessionFormData } from '@schemas/createSessionFormSchema';
 import { getAttendantRequest } from '@services/api/attendant/getAttendantRequest';
 import { loginAttendant } from '@services/api/attendant/loginAttendantRequest';
 import { statusCode } from '@services/api/responses/statusCode';
-import { connection } from '@services/axios-config';
+import { connection } from '@services/axiosConfig';
 import { localStorageFunctions } from '@services/localStorage/localStorageFunctions';
 import { create } from 'zustand';
 

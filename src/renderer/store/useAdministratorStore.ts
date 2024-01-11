@@ -5,11 +5,11 @@ import { create } from 'zustand';
 import { createAdministrator } from '@services/api/administrator/createAdministratorRequest';
 import { loginAdministrator } from '@services/api/administrator/loginAdministratorRequest';
 import { statusCode } from '@services/api/responses/statusCode';
-import { connection } from '@services/axios-config';
 import { localStorageFunctions } from '@services/localStorage/localStorageFunctions';
 import { localStorageKeys } from '@config/localStorageKeys';
-import { getAdministratorRequest } from '@services/api/administrator/getAdministratorRequest';
 import { deleteAdministratorRequest } from '@services/api/administrator/deleteAdministratorRequest';
+import { getAdministratorRequest } from '@services/api/administrator/getAdministratorRequest';
+import { connection } from '@services/axiosConfig';
 
 interface UseAdministratorStore {
   isAuthenticated: boolean;

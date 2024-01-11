@@ -1,4 +1,4 @@
-import { connection } from '@services/axios-config';
+import { connection } from '@services/axiosConfig';
 
 export async function deleteAdministratorRequest(id: string) {
   const response = await connection.delete(`/administrators/${id}`);

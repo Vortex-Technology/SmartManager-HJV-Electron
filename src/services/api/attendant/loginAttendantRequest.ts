@@ -1,5 +1,5 @@
 import { CreateSessionFormData } from '@schemas/createSessionFormSchema';
-import { connection } from '@services/axios-config';
+import { connection } from '@services/axiosConfig';
 
 interface LoginAttendantResponse {
   accessToken: string;
